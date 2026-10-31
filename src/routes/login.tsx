@@ -1,0 +1,8 @@
+import { createFileRoute } from '@tanstack/react-router';
+import { useState,type FormEvent } from 'react';
+import { Coffee,ArrowRight,LogOut } from 'lucide-react';
+import { PageHeading } from '@/components/bakery-shell';
+import { Button } from '@/components/ui/button';
+import { pageHead } from '@/lib/metadata';
+export const Route=createFileRoute('/login')({head:()=>pageHead('Seu cantinho','Acesse a experiência demonstrativa da Doce Aroma. Sem senha ou coleta de credenciais.'),component:Login});
+function Login(){const [name,setName]=useState('');const [entered,setEntered]=useState(false);function submit(e:FormEvent){e.preventDefault();if(name.trim().length>=2)setEntered(true);}return <main><PageHeading eyebrow="BOM TER VOCÊ POR AQUI" title="Seu cantinho na Doce Aroma."/><section className="login-area">{entered?<div role="status"><Coffee className="text-gold mb-4" size={35}/><h2>Olá, {name.trim()}!</h2><p>Seu café imaginário já está passando. Aproveite esse momento.</p><Button variant="outline" onClick={()=>{setEntered(false);setName('');}}>Sair da demonstração <LogOut/></Button></div>:<form onSubmit={submit}><h2>Sinta-se em casa.</h2><p>Entre com um nome fictício. Aqui não precisamos de senha para receber você bem.</p><div className="form-group"><label htmlFor="demo-name">Nome fictício</label><input className="field" id="demo-name" value={name} onChange={e=>setName(e.target.value)} required minLength={2} maxLength={60} placeholder="Seu nome de visitante"/></div><Button type="submit">Entrar na demonstração <ArrowRight/></Button><p className="local-note">Login exclusivamente demonstrativo, sem autenticação real, senha ou armazenamento de dados pessoais.</p></form>}</section></main>;}

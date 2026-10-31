@@ -1,0 +1,4 @@
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight } from 'lucide-react';
+import { products,money } from '@/lib/bakery';
+export function ProductCard({product}:{product:typeof products[number]}) {return <Link to="/produtos/$produto" params={{produto:product.id}} className="product-card"><div className="product-photo"><img src={product.image} alt={product.name} width={384} height={512} loading="lazy"/>{product.badge&&<span className="product-badge">{product.badge}</span>}<span className="product-arrow"><ArrowUpRight size={19}/></span></div><div className="product-info"><span className="product-category">{product.category}</span><h3>{product.name}</h3><p>{product.description}</p><div className="product-price">{money(product.price)}<small>/ {product.unit}</small></div></div></Link>;}

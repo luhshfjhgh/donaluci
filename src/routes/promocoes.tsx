@@ -1,0 +1,8 @@
+import { createFileRoute,Link } from '@tanstack/react-router';
+import { ArrowUpRight } from 'lucide-react';
+import { PageHeading } from '@/components/bakery-shell';
+import { Button } from '@/components/ui/button';
+import { products } from '@/lib/bakery';
+import { pageHead } from '@/lib/metadata';
+export const Route=createFileRoute('/promocoes')({head:()=>pageHead('Promoções da casa','Combinações especiais de café, pães e doces. Pequenos prazeres para deixar o dia ainda melhor.'),component:Promos});
+function Promos(){return <main><PageHeading eyebrow="COMBINAÇÕES QUE ABRAÇAM" title="Um motivo a mais para vir.">Seus favoritos ficam ainda melhores juntos.</PageHeading><div className="container content-page"><div className="promo-grid">{[{image:products[1]!.image,name:'Seu bom-dia favorito',text:'Um croissant de manteiga e um café expresso. A combinação perfeita para começar sem pressa.',before:'R$ 16,80',price:'R$ 14,90',time:'Segunda a sexta · 7h às 10h'},{image:products[3]!.image,name:'Uma pausa bem doce',text:'Uma fatia do nosso bolo de chocolate com um cappuccino da casa. Melhor ainda com uma boa conversa.',before:'R$ 29,80',price:'R$ 25,90',time:'Segunda a sexta · 14h às 18h'}].map(p=><article className="promo-item" key={p.name}><img src={p.image} alt={p.name} width={384} height={512}/><div className="promo-content"><span className="eyebrow">{p.time}</span><h2>{p.name}</h2><p>{p.text}</p><div className="price"><del>{p.before}</del>{p.price}</div><Button asChild><Link to="/contato">Quero aproveitar <ArrowUpRight/></Link></Button></div></article>)}</div><p className="local-note mt-6">Ofertas fictícias, exclusivas para consumo no local e não cumulativas. Sujeitas à disponibilidade das fornadas.</p></div></main>;}
